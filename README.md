@@ -41,6 +41,7 @@ BotToken = "your-telegram-bot-token"
 ```
 main.py                 # запуск бота
 dops/
+  ├─ keyboard.py        # клавиатура бота
   └─ config.py          # настройки и токен
 utils/
   ├─ scan.py            # сканирование IP, DNS, портов
