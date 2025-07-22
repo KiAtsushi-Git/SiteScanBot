@@ -111,20 +111,16 @@ async def callback_info(call: types.CallbackQuery):
 
     await call.answer("Начинаю сканирование и построение графа...")
 
-    # Получаем данные
     ips, open_ports, server_info, dns = await scan_domain_data(domain)
     if ips is None:
         await call.message.answer("Ошибка при сканировании домена.")
         return
 
-    # Генерируем граф
     graph_path = generate_full_network_graph(domain, ips, open_ports, server_info)
 
-    # Отправляем картинку
     with open(graph_path, "rb") as photo:
         await call.message.answer_photo(photo=InputFile(photo), caption=f"Граф связей для {domain}")
 
-    # Можно удалить файл, если хочешь
     import os
     os.remove(graph_path)
 
